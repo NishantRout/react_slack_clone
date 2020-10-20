@@ -10,7 +10,7 @@ function Header() {
         <Avatar className="header__avatar" alt="username" src="" />
         <AccessTime />
       </div>
-      <div className="header_search">
+      <div className="header__search">
         <Search />
         <input placeholder="Search here..." />
       </div>
