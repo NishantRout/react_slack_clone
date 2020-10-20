@@ -40,6 +40,8 @@
   outline: none;
   text-align: center;
   min-width: 35vw;
+  caret-color: white;
+  color: rgb(216, 216, 216);
 }
 
 .header__right {
