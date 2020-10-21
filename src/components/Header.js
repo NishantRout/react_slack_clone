@@ -1,5 +1,11 @@
 import { Button } from "@material-ui/core";
-import { Menu, AccessTime, HelpOutline, Search } from "@material-ui/icons";
+import {
+  Menu,
+  AccessTime,
+  HelpOutline,
+  Search,
+  Close,
+} from "@material-ui/icons";
 import React from "react";
 import "./css/Header.css";
 
@@ -12,7 +18,11 @@ function Header({ sidebarOpen, setSidebarOpen }) {
     <div className="header">
       <div className="header__left">
         <Button onClick={handleOpen}>
-          <Menu className="menu__icon" />
+          {sidebarOpen ? (
+            <Close className="menu__icon" />
+          ) : (
+            <Menu className="menu__icon" />
+          )}
         </Button>
 
         <AccessTime />
