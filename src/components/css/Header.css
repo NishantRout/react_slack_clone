@@ -5,6 +5,8 @@
   padding: 10px 0;
   background-color: var(--slack-color);
   color: white;
+  z-index: 100;
+  width: 100%;
 }
 
 .header__left {
@@ -48,9 +50,29 @@
   flex: 0.3;
   display: flex;
   align-items: flex-end;
+  margin-right: 40px;
 }
 
 .header__right > .MuiSvgIcon-root {
   margin-left: auto;
-  margin-right: 20px;
+  /* margin-right: 20px; */
+}
+
+@media screen and (max-width: 990px) {
+  .header {
+    width: 100%;
+  }
+  .header__left > .MuiSvgIcon-root {
+    margin-left: 10px;
+  }
+  .header__search {
+    width: 100%;
+    max-width: 30vw;
+  }
+  .header__search > input {
+    text-align: left;
+  }
+  .header__right {
+    margin-right: 20px;
+  }
 }

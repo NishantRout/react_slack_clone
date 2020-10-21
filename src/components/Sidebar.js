@@ -12,11 +12,25 @@ import {
   InsertComment,
   PeopleAlt,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./css/Sidebar.css";
 import SidebarOption from "./SidebarOption";
+import db from "../config/config";
 
 function Sidebar() {
+  const [channels, setChannels] = useState([]);
+
+  useEffect(() => {
+    db.collection("rooms").onSnapshot((snapshot) =>
+      setChannels(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+        }))
+      )
+    );
+  }, []);
+
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -41,7 +55,9 @@ function Sidebar() {
       <SidebarOption Icon={ExpandMore} title="Channels" />
       <hr />
       <SidebarOption Icon={Add} title="Add Channel" />
-      <SidebarOption title="YouTube" />
+      {channels.map((channel) => (
+        <SidebarOption title={channel.name} id={channel.id} />
+      ))}
     </div>
   );
 }
