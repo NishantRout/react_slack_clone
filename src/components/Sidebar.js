@@ -16,6 +16,7 @@ import React, { useEffect, useState } from "react";
 import "./css/Sidebar.css";
 import SidebarOption from "./SidebarOption";
 import db from "../config/config";
+import { Avatar } from "@material-ui/core";
 
 function Sidebar() {
   const [channels, setChannels] = useState([]);
@@ -34,6 +35,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
+        <Avatar className="header__avatar" alt="username" src="" />
         <div className="sidebar__info">
           <h2>Perfect Shades</h2>
           <h3>
