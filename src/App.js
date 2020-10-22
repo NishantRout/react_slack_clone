@@ -7,6 +7,7 @@ import Chat from "./components/Chat";
 import { useState } from "react";
 
 function App() {
+  const [user, setUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleOpen = () => {
@@ -20,24 +21,30 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          sidebarOpen={sidebarOpen}
-        />
+        {!user ? (
+          <h1>Login Page</h1>
+        ) : (
+          <>
+            <Header
+              handleOpen={handleOpen}
+              handleClose={handleClose}
+              sidebarOpen={sidebarOpen}
+            />
 
-        <div className="app__body">
-          <Sidebar sidebarOpen={sidebarOpen} />
+            <div className="app__body">
+              <Sidebar sidebarOpen={sidebarOpen} />
 
-          <Switch>
-            <Route path="/room/:roomId">
-              <Chat />
-            </Route>
-            <Route path="/">
-              <h1>Welcome</h1>
-            </Route>
-          </Switch>
-        </div>
+              <Switch>
+                <Route path="/room/:roomId">
+                  <Chat />
+                </Route>
+                <Route path="/">
+                  <h1>Welcome</h1>
+                </Route>
+              </Switch>
+            </div>
+          </>
+        )}
       </Router>
     </div>
   );
