@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import db from "../config/config";
 import { useState } from "react";
 import Message from "./Message";
+import ChatInput from "./ChatInput";
 
-function Chat() {
+function Chat({ sidebarOpen }) {
   const { roomId } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState([]);
@@ -27,6 +28,8 @@ function Chat() {
         setRoomMessages(snapshot.docs.map((doc) => doc.data()))
       );
   }, [roomId]);
+
+  console.log("chatstatus", sidebarOpen);
 
   return (
     <div className="chat">
@@ -53,6 +56,12 @@ function Chat() {
           />
         ))}
       </div>
+
+      <ChatInput
+        channelName={roomDetails?.name}
+        channelId={roomId}
+        sidebarOpen={sidebarOpen}
+      />
     </div>
   );
 }

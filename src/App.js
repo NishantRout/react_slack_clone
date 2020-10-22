@@ -43,6 +43,8 @@ function App() {
     });
   }, []);
 
+  console.log("appstatus", sidebarOpen);
+
   return (
     <div className="App">
       <Router>
@@ -61,7 +63,7 @@ function App() {
 
               <Switch>
                 <Route path="/room/:roomId">
-                  <Chat />
+                  <Chat sidebarOpen={sidebarOpen} />
                 </Route>
                 <Route path="/">
                   <h1>Welcome</h1>

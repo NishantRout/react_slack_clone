@@ -1,0 +1,39 @@
+.chatInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 62px;
+  border-top: 1px solid lightgray;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+}
+
+.chatInput > form {
+  flex: 1;
+  display: flex;
+}
+
+.chatInput > form > input {
+  flex: 0.95;
+  border-radius: 30px;
+  padding: 10px;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+}
+
+.chatInput > form > button {
+  flex: 0.05;
+  margin-right: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--slack-color);
+  cursor: pointer;
+}
+
+.chatInput__button {
+  margin-right: 270px !important;
+}
