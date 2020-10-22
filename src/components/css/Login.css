@@ -1,0 +1,47 @@
+.login {
+  height: 100vh;
+  background-color: #f8f8f8;
+  display: grid;
+  place-items: center;
+}
+
+.login__container {
+  padding: 100px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.login__container > p {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.login__container > img {
+  object-fit: contain;
+  height: 100px;
+  margin-bottom: 40px;
+}
+
+.login__container > button {
+  margin-top: 50px;
+  text-transform: inherit !important;
+  background-color: #0a8d48;
+  color: white;
+}
+
+@media screen and (max-width: 990px) {
+  .login__container {
+    margin-bottom: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .login__container > h2 {
+    font-size: 20px;
+  }
+  .login__container > p {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}
