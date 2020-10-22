@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -7,10 +7,12 @@ import Chat from "./components/Chat";
 import { useState } from "react";
 import Login from "./components/Login";
 import { useStateValue } from "./providers/StateProvider";
+import { auth } from "./config/config";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleOpen = () => {
     setSidebarOpen(true);
@@ -20,11 +22,32 @@ function App() {
     setSidebarOpen(false);
   };
 
+  useEffect(() => {
+    setLoading(true);
+    console.log(loading);
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        console.log(authUser);
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        setLoading(false);
+        console.log(authUser);
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
       <Router>
         {!user ? (
-          <Login />
+          <Login loading={loading} />
         ) : (
           <>
             <Header

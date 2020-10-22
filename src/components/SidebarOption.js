@@ -1,10 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import db from "../config/config";
+import firebase from "firebase";
 import "./css/SidebarOption.css";
+import { useStateValue } from "../providers/StateProvider";
 
-function SidebarOption({ Icon, title, id, addChannelOption }) {
+function SidebarOption({ Icon, title, id, addChannelOption, endSession }) {
   const history = useHistory();
+  const [{ user }, dispatch] = useStateValue();
 
   const selectChannel = () => {
     if (id) {
@@ -24,10 +27,27 @@ function SidebarOption({ Icon, title, id, addChannelOption }) {
     }
   };
 
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      })
+      .catch(function (error) {
+        alert(error.message);
+      });
+  };
+
   return (
     <div
       className="sidebarOption"
-      onClick={addChannelOption ? addChannel : selectChannel}
+      onClick={
+        addChannelOption ? addChannel : endSession ? signOut : selectChannel
+      }
     >
       {Icon && <Icon className="sidebarOption__icon" />}
       {Icon ? (

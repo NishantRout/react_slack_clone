@@ -4,6 +4,7 @@ import {
   BookmarkBorder,
   Create,
   Drafts,
+  ExitToApp,
   ExpandLess,
   ExpandMore,
   FiberManualRecord,
@@ -17,9 +18,11 @@ import "./css/Sidebar.css";
 import SidebarOption from "./SidebarOption";
 import db from "../config/config";
 import { Avatar } from "@material-ui/core";
+import { useStateValue } from "../providers/StateProvider";
 
 function Sidebar({ sidebarOpen }) {
   const [channels, setChannels] = useState([]);
+  const [{ user }, dispatch] = useStateValue();
 
   const displaySidebar = () => {
     document.getElementById("sidebar").style.width = "260px";
@@ -49,12 +52,16 @@ function Sidebar({ sidebarOpen }) {
   return (
     <div className="sidebar" id="sidebar">
       <div className="sidebar__header" id="sidebar__header">
-        <Avatar className="header__avatar" alt="username" src="" />
+        <Avatar
+          className="header__avatar"
+          alt={user?.displayName}
+          src={user?.photoURL}
+        />
         <div className="sidebar__info">
           <h2>Perfect Shades</h2>
           <h3>
             <FiberManualRecord />
-            Nishant Rout
+            {user?.displayName}
           </h3>
         </div>
         <Create />
@@ -66,6 +73,7 @@ function Sidebar({ sidebarOpen }) {
       <SidebarOption Icon={PeopleAlt} title="People & User Groups" />
       <SidebarOption Icon={Apps} title="Apps" />
       <SidebarOption Icon={FileCopy} title="File Browser" />
+      <SidebarOption Icon={ExitToApp} endSession title="Sign out" />
       <SidebarOption Icon={ExpandLess} title="Show Less" />
       <hr />
       <SidebarOption Icon={ExpandMore} title="Channels" />
