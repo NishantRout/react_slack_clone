@@ -6,9 +6,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Chat from "./components/Chat";
 import { useState } from "react";
 import Login from "./components/Login";
+import { useStateValue } from "./providers/StateProvider";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [{ user }, dispatch] = useStateValue();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleOpen = () => {
