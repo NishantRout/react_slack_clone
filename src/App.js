@@ -8,13 +8,26 @@ import { useState } from "react";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const handleOpen = () => {
+    setSidebarOpen(true);
+  };
+
+  const handleClose = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <div className="App">
       <Router>
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Header
+          handleOpen={handleOpen}
+          handleClose={handleClose}
+          sidebarOpen={sidebarOpen}
+        />
 
         <div className="app__body">
-          {sidebarOpen && <Sidebar />}
+          <Sidebar sidebarOpen={sidebarOpen} />
 
           <Switch>
             <Route path="/room/:roomId">

@@ -4,7 +4,9 @@
   border-top: 1px solid #49274b;
   width: 100%;
   max-width: 260px;
-  min-width: 250px;
+  /* min-width: 250px; */
+  transition: 400ms;
+  overflow-x: hidden;
 }
 
 .sidebar > hr {

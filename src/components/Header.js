@@ -9,19 +9,15 @@ import {
 import React from "react";
 import "./css/Header.css";
 
-function Header({ sidebarOpen, setSidebarOpen }) {
-  const handleOpen = () => {
-    sidebarOpen ? setSidebarOpen(false) : setSidebarOpen(true);
-  };
-
+function Header({ handleOpen, handleClose, sidebarOpen }) {
   return (
     <div className="header">
       <div className="header__left">
-        <Button onClick={handleOpen}>
+        <Button>
           {sidebarOpen ? (
-            <Close className="menu__icon" />
+            <Close className="menu__icon" onClick={handleClose} />
           ) : (
-            <Menu className="menu__icon" />
+            <Menu className="menu__icon" onClick={handleOpen} />
           )}
         </Button>
 

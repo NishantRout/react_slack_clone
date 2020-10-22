@@ -18,8 +18,22 @@ import SidebarOption from "./SidebarOption";
 import db from "../config/config";
 import { Avatar } from "@material-ui/core";
 
-function Sidebar() {
+function Sidebar({ sidebarOpen }) {
   const [channels, setChannels] = useState([]);
+
+  const displaySidebar = () => {
+    document.getElementById("sidebar").style.width = "260px";
+    // document.getElementById("sidebar__header").style.display = "flex";
+  };
+
+  const hideSidebar = () => {
+    document.getElementById("sidebar").style.width = "0px";
+    // document.getElementById("sidebar__header").style.display = "none";
+  };
+
+  useEffect(() => {
+    sidebarOpen ? displaySidebar() : hideSidebar();
+  }, [sidebarOpen]);
 
   useEffect(() => {
     db.collection("rooms").onSnapshot((snapshot) =>
@@ -33,8 +47,8 @@ function Sidebar() {
   }, []);
 
   return (
-    <div className="sidebar">
-      <div className="sidebar__header">
+    <div className="sidebar" id="sidebar">
+      <div className="sidebar__header" id="sidebar__header">
         <Avatar className="header__avatar" alt="username" src="" />
         <div className="sidebar__info">
           <h2>Perfect Shades</h2>
